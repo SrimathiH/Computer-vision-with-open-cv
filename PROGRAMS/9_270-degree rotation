@@ -1,0 +1,11 @@
+import cv2
+
+image_path = 'teddy.jpeg'
+original_image = cv2.imread(image_path)
+
+rotated_image = cv2.flip(cv2.transpose(original_image), flipCode=0)
+
+cv2.imshow('Original Image', original_image)
+cv2.imshow('Rotated Image', rotated_image)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
