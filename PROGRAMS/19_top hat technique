@@ -1,0 +1,15 @@
+import cv2
+import numpy as np
+image = cv2.imread('teddy.jpeg', cv2.IMREAD_GRAYSCALE)
+
+kernel_size = (5, 5)
+kernel = np.ones(kernel_size, np.uint8)
+
+opening_result = cv2.morphologyEx(image, cv2.MORPH_OPEN, kernel)
+top_hat_result = cv2.subtract(image, opening_result)
+
+cv2.imshow('Original Image', image)
+cv2.imshow('Opening Result', opening_result)
+cv2.imshow('Top Hat Result', top_hat_result)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
