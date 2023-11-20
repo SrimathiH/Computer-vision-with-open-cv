@@ -1,0 +1,25 @@
+import cv2
+
+def select_roi(image_path, x, y, width, height):
+    source_image = cv2.imread(image_path)
+
+    x = max(0, x)
+    y = max(0, y)
+    width = min(width, source_image.shape[1] - x)
+    height = min(height, source_image.shape[0] - y)
+
+    roi = source_image[y:y+height, x:x+width]
+    roi_copy = roi.copy()
+
+    paste_x, paste_y = 50, 50
+    source_image[paste_y:paste_y+height, paste_x:paste_x+width] = roi_copy
+
+    cv2.imshow('Original Image', source_image)
+    cv2.imshow('Cropped ROI', roi)
+    cv2.imshow('Pasted Result', source_image)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+
+image_path = 'teddy.jpeg'
+roi_x, roi_y, roi_width, roi_height = 100, 100, 200, 200  # Adjust these values based on your ROI selection
+select_roi(image_path, roi_x, roi_y, roi_width, roi_height)
