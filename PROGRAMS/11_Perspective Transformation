@@ -1,0 +1,21 @@
+import cv2
+import numpy as np
+
+# Load the image
+image = cv2.imread('teddy.jpeg')
+
+x1, y1 = 100, 100
+x2, y2 = 300, 100
+x3, y3 = 300, 400
+x4, y4 = 100, 400
+
+original_pts = np.float32([[x1, y1], [x2, y2], [x3, y3], [x4, y4]])
+width, height = 500, 600
+new_pts = np.float32([[0, 0], [width, 0], [width, height], [0, height]])
+
+result = cv2.warpPerspective(image, cv2.getPerspectiveTransform(original_pts, new_pts), (width, height))
+
+cv2.imshow('Original Image', image)
+cv2.imshow('Perspective Transformed Image', result)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
