@@ -1,0 +1,16 @@
+import cv2
+
+image_path = 'example.jpg'
+original_image = cv2.imread(image_path)
+
+bigger_image = cv2.resize(original_image, None, fx=1.5, fy=1.5)
+smaller_image = cv2.resize(original_image, None, fx=0.5, fy=0.5)
+
+cv2.imwrite('bigger_image.jpg', bigger_image)
+cv2.imwrite('smaller_image.jpg', smaller_image)
+
+cv2.imshow('Original Image', original_image)
+cv2.imshow('Bigger Image', bigger_image)
+cv2.imshow('Smaller Image', smaller_image)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
